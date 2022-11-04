@@ -23,6 +23,7 @@ export default function ProfilePage({ loading, setLoading }) {
 
 export function ControlledCheckbox() {
     const isChecked = useSelector(state => state.profile)
+    // console.log(isChecked)
     const dispatch = useDispatch()
 
     const handleChange = () => {

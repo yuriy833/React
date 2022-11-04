@@ -11,4 +11,4 @@ const Message = ({ id, author, text }) => {
     )
 }
 
-export default Message; 
+export default Message;

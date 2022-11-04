@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
+// Профиль
 const initialStateProfile = false
 const profileSlice = createSlice({
     name: 'profile',
@@ -13,6 +16,7 @@ const profileSlice = createSlice({
 export const { switchProfile } = profileSlice.actions
 export const profileReducer = profileSlice.reducer
 
+// Чаты
 const initialStateChats = []
 const chatsSlice = createSlice({
     name: 'chats',
@@ -28,7 +32,6 @@ const chatsSlice = createSlice({
 })
 export const { addChat, removeChat } = chatsSlice.actions
 export const chatsReducer = chatsSlice.reducer
-
 
 export const getBotMess = createAsyncThunk('message/getBotMess', async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/comments');
@@ -113,3 +116,72 @@ const newsSlice = createSlice({
 })
 export const { addNextNews } = newsSlice.actions
 export const newsReducer = newsSlice.reducer
+
+// User
+export const createUserThunk = createAsyncThunk('user/createUserThunk', async ({ email, pass }) => {
+    try {
+        const userCredit = await createUserWithEmailAndPassword(auth, email, pass)
+        console.log(userCredit.user)
+        const userDate = {
+            email: userCredit.user.email,
+            token: userCredit.user.accessToken,
+            id: userCredit.user.uid
+        }
+        return userDate
+    } catch (er) {
+        console.log(er.code, er.message)
+    }
+})
+
+export const signInUserThunk = createAsyncThunk('user/signInUserThunk', async ({ email, pass }) => {
+    try {
+        const userCredit = await signInWithEmailAndPassword(auth, email, pass)
+        console.log(userCredit.user)
+        const userDate = {
+            email: userCredit.user.email,
+            token: userCredit.user.accessToken,
+            id: userCredit.user.uid
+        }
+        return userDate
+    } catch (er) {
+        console.log(er.code, er.message)
+    }
+})
+
+const userSlice = createSlice({
+    name: 'user',
+    initialState: {
+        email: null,
+        token: null,
+        id: null
+    },
+    reducers: {
+        removeUser(state) {
+            state.email = null
+            state.token = null
+            state.id = null
+        }
+    },
+    extraReducers: {
+        [createUserThunk.pending]: () => {
+            console.log("createUser.pending")
+        },
+        [createUserThunk.fulfilled]: (state, action) => {
+            return state = action.payload
+        },
+        [createUserThunk.rejected]: () => {
+            console.log("createUser.rejected")
+        },
+        [signInUserThunk.pending]: () => {
+            console.log("createUser.pending")
+        },
+        [signInUserThunk.fulfilled]: (state, action) => {
+            return state = action.payload
+        },
+        [signInUserThunk.rejected]: () => {
+            console.log("createUser.rejected")
+        }
+    }
+})
+export const { removeUser } = userSlice.actions
+export const userReducer = userSlice.reducer

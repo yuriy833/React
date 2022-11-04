@@ -13,4 +13,4 @@ export default function MessageList({ chatId, messageList }) {
             </div>
         </div>
     );
-}
+} 

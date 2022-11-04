@@ -8,7 +8,6 @@ export default function MessagListContainer() {
     const messageList = useSelector(state => state.message.messages)
     const dispatch = useDispatch()
     const { chatId } = useParams()
-
     React.useEffect(() => {
         setTimeout(() => { dispatch(getBotMess()) }, 2000)
     }, [messageList, dispatch])
