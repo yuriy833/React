@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { createUserThunk, signInUserThunk, removeUser } from '../slices/slices';
 
-export default function LoginView({ isAuth }) {
+export default function LoginView({isAuth}) {
+    // const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [pass, setPass] = React.useState('')
     const dispatch = useDispatch()
@@ -12,7 +13,9 @@ export default function LoginView({ isAuth }) {
         <div className='centre' style={{ color: "white" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
                 <h2>Authorization</h2>
-                < input type="email" placeholder="Email" value={email}
+                {/* <input type="text" placeholder="User" value={name}
+                    onChange = {(el) => {setName(el.target.value)}} /> */}
+                <input type="email" placeholder="Email" value={email}
                     onChange={(el) => { setEmail(el.target.value) }} />
                 <input type="password" placeholder="Password" value={pass}
                     onChange={(el) => { setPass(el.target.value) }} />

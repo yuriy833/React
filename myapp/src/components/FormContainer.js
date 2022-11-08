@@ -12,6 +12,7 @@ const FormContainer = () => {
         author: ''
     })
 
+    // console.log(chatId)
     const dispatch = useDispatch()
     const submitForm = (el) => {
         el.preventDefault()
@@ -28,7 +29,7 @@ const FormContainer = () => {
     }
 
     return (
-        <Form setMessageBody={setMessageBody} submitForm={submitForm} messageBody={messageBody} />
+        <Form setMessageBody={setMessageBody} submitForm={submitForm} messageBody={messageBody}/>
     )
 }
 

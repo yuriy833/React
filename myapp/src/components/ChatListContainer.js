@@ -6,8 +6,10 @@ export default function ChatListContainer() {
     const { chatId } = useParams()
     const isChats = useSelector(state => state.chats)
     const dispatch = useDispatch()
+    // console.log(chatId);
+    // console.log(isChats);
 
     return (
-        <ChatList chatId={chatId} isChats={isChats} dispatch={dispatch} />
+        <ChatList  chatId={chatId} isChats={isChats} dispatch={dispatch}/>
     );
 }

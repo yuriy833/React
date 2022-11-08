@@ -15,7 +15,7 @@ export default function Input({ setMessageBody, messageBody }) {
     return (
         <>
             <TextField inputRef={inputRef} autoFocus={true} className="user-box" id="standard-basic" label="Username" variant="standard" value={author} onChange={(el) =>
-                setMessageBody(pervstate => ({ ...pervstate, id: chatId, author: el.target.value }))
+                setMessageBody(pervstate => ({ ...pervstate, id:chatId, author: el.target.value }))
             } />
             <TextField className="user-box" id="standard-basic" label="Text" variant="standard" value={text} onChange={(el) =>
                 setMessageBody(pervstate => ({ ...pervstate, text: el.target.value }))

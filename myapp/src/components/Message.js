@@ -1,4 +1,4 @@
-const Message = ({ id, author, text }) => {
+const Message = ({id, author, text }) => {
 
     return (
         <div className='message'>

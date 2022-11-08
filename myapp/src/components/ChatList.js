@@ -8,7 +8,7 @@ import MessagListContainer from './MessagListContainer';
 import { addChat, removeChat } from '../slices/slices'
 import { addChatBase, getAllChatBase } from '../firebase/crud';
 
-export function ChatList({ chatId, isChats, dispatch }) {
+export function ChatList({chatId, isChats, dispatch}) {
     return (
         <>
             <Box className="chat-list">
@@ -29,13 +29,13 @@ export function ChatList({ chatId, isChats, dispatch }) {
                 </List>
                 <button className='btn-add-chat' onClick={() => {
                     dispatch(addChat())
-                    addChatBase({ isChats })
+                    addChatBase({isChats})
                     getAllChatBase()
                 }}>+</button>
             </Box>
 
             {
-                chatId && isChats.find(el => el.id === Number(chatId)) ? <MessagListContainer /> : <h2 className='centre' style={{ fontSize: "60px", color: 'white' }}>Select chat</h2>
+                chatId && isChats.find(el=> el.id === Number(chatId)) ? <MessagListContainer /> : <h2 className='centre' style={{ fontSize: "60px", color: 'white' }}>Select chat</h2>
             }
         </>
     );

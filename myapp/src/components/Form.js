@@ -2,7 +2,7 @@ import Input from './input';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
-const Form = ({ setMessageBody, submitForm, messageBody }) => {
+const Form = ({setMessageBody, submitForm, messageBody}) => {
     return (
         <div className="message-box">
             <h2>Message</h2>

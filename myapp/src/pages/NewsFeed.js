@@ -27,9 +27,9 @@ export default function NewsFeed({ loading, setLoading }) {
                 {
                     APIERROR ?
                         <div className='centre'>
-                            <p style={{ color: "white", fontSize: "37px" }}>Something went wrong!</p>
+                            <p style={{color:"white", fontSize:"37px"}}>Something went wrong!</p>
                             <button className='btn btn-news' onClick={() => { dispatch(getNews()) }}>Try again</button>
-                        </div>
+                            </div>
                         :
                         <>
                             <button className='btn btn-news' onClick={() => { dispatch(addNextNews()) }}>Show next New</button>

@@ -1,8 +1,8 @@
 import FormContainer from './FormContainer';
 import Message from './Message';
 
-export default function MessageList({ chatId, messageList }) {
-
+export default function MessageList({chatId, messageList}) {
+    
     return (
         <div className='wrp'>
             <FormContainer />
@@ -13,4 +13,4 @@ export default function MessageList({ chatId, messageList }) {
             </div>
         </div>
     );
-} 
+}

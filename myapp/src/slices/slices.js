@@ -33,6 +33,9 @@ const chatsSlice = createSlice({
 export const { addChat, removeChat } = chatsSlice.actions
 export const chatsReducer = chatsSlice.reducer
 
+
+// Cообщения
+// https://jsonplaceholder.typicode.com/comments
 export const getBotMess = createAsyncThunk('message/getBotMess', async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/comments');
     const data = response.json();
@@ -59,6 +62,9 @@ const messageSlice = createSlice({
         [getBotMess.fulfilled]: (state, action) => {
             state.status = 'resolved';
             if (state.messages.length > 0 && state.messages.slice(-1)[0].author !== 'removeBot') {
+                // setTimeout(()=>{
+                //     state.messages.push({ id: state.messages[state.messages.length-1].id, text: action.payload[Math.floor(Math.random() * 400)].body, author: 'removeBot' })
+                // }, 2500)
                 state.messages.push({ id: state.messages[state.messages.length - 1].id, text: action.payload[Math.floor(Math.random() * 400)].body, author: 'removeBot' })
             }
         },
@@ -72,6 +78,8 @@ const messageSlice = createSlice({
 export const { addMess } = messageSlice.actions
 export const messageReducer = messageSlice.reducer
 
+// Новости
+// http://api.mediastack.com/v1/news?access_key=6605ac0bcb0ad7b99d0bc393d89d3ac4&countries=ru&languages=ru&limit=3
 export const getNews = createAsyncThunk('news/getNews', async () => {
     const response = await fetch('http://api.mediastack.com/v1/news?access_key=6605ac0bcb0ad7b99d0bc393d89d3ac4&countries=ru&languages=ru&limit=6');
     const data = response.json();
@@ -90,7 +98,7 @@ const newsSlice = createSlice({
         addNextNews(state) {
             if (state.news.length < state.newsAPI.length) {
                 state.news = [...state.news, state.newsAPI[state.news.length]]
-            } else { alert("Больше новостей нет!") }
+            } else { alert("Больше новостей нет!")}
         }
     },
     extraReducers: {
@@ -118,8 +126,8 @@ export const { addNextNews } = newsSlice.actions
 export const newsReducer = newsSlice.reducer
 
 // User
-export const createUserThunk = createAsyncThunk('user/createUserThunk', async ({ email, pass }) => {
-    try {
+export const createUserThunk = createAsyncThunk('user/createUserThunk', async ({email, pass}) => {
+    try{
         const userCredit = await createUserWithEmailAndPassword(auth, email, pass)
         console.log(userCredit.user)
         const userDate = {
@@ -128,13 +136,13 @@ export const createUserThunk = createAsyncThunk('user/createUserThunk', async ({
             id: userCredit.user.uid
         }
         return userDate
-    } catch (er) {
+    }catch(er){
         console.log(er.code, er.message)
     }
 })
 
-export const signInUserThunk = createAsyncThunk('user/signInUserThunk', async ({ email, pass }) => {
-    try {
+export const signInUserThunk = createAsyncThunk('user/signInUserThunk', async ({email, pass}) => {
+    try{
         const userCredit = await signInWithEmailAndPassword(auth, email, pass)
         console.log(userCredit.user)
         const userDate = {
@@ -143,12 +151,12 @@ export const signInUserThunk = createAsyncThunk('user/signInUserThunk', async ({
             id: userCredit.user.uid
         }
         return userDate
-    } catch (er) {
+    }catch(er){
         console.log(er.code, er.message)
     }
 })
 
-const userSlice = createSlice({
+const userSlice = createSlice ({
     name: 'user',
     initialState: {
         email: null,

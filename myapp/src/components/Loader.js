@@ -1,8 +1,8 @@
-const Loader = () => {
-    return (
-        <div className='loader'>
+const Loader = () =>{
+    return(
+        <div className = 'loader'>
             <div>Loading...</div>
         </div>
     )
 }
-export default Loader 
+export default Loader
